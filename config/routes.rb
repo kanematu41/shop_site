@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :end_users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+	namespace :admin do
+  	devise_for :admins, controllers: {
+  		registrations: 'admin/admins/registrations',
+  		sessions: 'admin/admins/sessions'
+  	}
+  end
+
+  scope module: :customer do
+  	devise_for :end_users, controllers: {
+  		registrations: 'customer/end_users/registrations',
+  		sessions: 'customer/end_users/sessions',
+  		passwords: 'customer/end_users/passwords'
+  	}
+  end
+
 end

@@ -1,0 +1,2 @@
+class CratItem < ApplicationRecord
+end

@@ -1,2 +1,64 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container">
+	<div class="row">
+			<h3>商品新規登録</h3>
+
+		<%= form_for(@item) do |f| %>
+		<div class="col-xs-6">
+			<div align="center">
+
+				<%= attachment_image_tag @item, :image, size: "300x300", fallback: "no_image.png", id: "file-preview" %>
+				<%= f.attachment_field :image, id: "image-select" %>
+				<label for ="image-select" class="btn btn-primary item-new-button" style="display: block;">画像選択</label>
+
+			</div>
+		</div>
+
+		<div class="col-xs-6">
+			<div class="item-field">
+				<%= f.label :商品名 %>
+				<%= f.text_field :name, class:"form-control" %>
+			</div>
+
+			<div class="item-field">
+				<%= f.label :商品説明 %>
+				<%= f.text_area :detail, class:"form-control" %>
+			</div>
+
+			<div class="item-field">
+				<%= f.label :ジャンル %>
+				<%= f.collection_select :genre_id, Genre.all, :id, :name, {}, class:"form-control" %>
+			</div>
+
+			<div class="item-field">
+				<%= f.label :税抜価格 %>
+				<%= f.text_field :non_tax_price, class:"form-control" %>
+			</div>
+
+			<div class="item_field">
+				<%= f.label :販売ステータス %>
+				<%#= f.select :is_valid, ["販売中", "販売停止中"], {include_blank: "選択"} %>
+				<%#= f.select :is_valid, options_for_select(Item.is_valids), {}, class: "form-control" %>
+				<%= f.select :is_valid, Item.is_valids.keys.to_a, {}, class: "form-control" %>
+			</div>
+
+			<%= f.submit "登録する" %>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
+
+<script>
+	document.getElementById('image-select').addEventListener('change', function (e) {
+    // 1枚だけ表示する
+    var file = e.target.files[0];
+
+    // ファイルのブラウザ上でのURLを取得する
+    var blobUrl = window.URL.createObjectURL(file);
+
+    // img要素に表示
+    var img = document.getElementById('file-preview');
+    img.src = blobUrl;
+});
+</script>

@@ -1,3 +1,12 @@
 // Place all the styles related to the admin/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#image-select {
+	display: none;
+}
+
+.item-new-button {
+	margin: 20px;
+	width: 50%;
+}

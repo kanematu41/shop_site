@@ -2,7 +2,8 @@
 	<div class="row">
 			<h3>商品新規登録</h3>
 
-		<%= form_for(@item) do |f| %>
+		<%= form_for [:admin, @item] do |f| %>
+		<%= render 'layouts/error_messages', model: f.object %>
 		<div class="col-xs-6">
 			<div align="center">
 

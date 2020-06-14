@@ -16,3 +16,16 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+//header
+ header {
+ 	height: 60px;
+ }
+
+//error_messe
+.error-massege {
+  background-color: #f8d7da;
+  ul {
+    list-style: none;
+  }
+}

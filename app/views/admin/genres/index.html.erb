@@ -2,29 +2,12 @@
 	<div class="row">
 		<h3>ジャンル追加・一覧画面</h3>
 
-		<%= form_for [:admin, @genre] do |f| %>
-		<%= render 'layouts/error_messages', model: f.object %>
+		<%= render 'admin/genres/genre_form', genre: @genre %>
 
-		<div class="col-xs-3">
-			<%= f.label :ジャンル名 %>
-			<%= f.text_field :name, class: "form-control" %>
-		</div>
-
-		<div class="col-xs-3">
-			<div class="genre-field">
-				<%= f.radio_button :is_valid, :有効 %>
-				<%= f.label :有効 %>
-				<%= f.radio_button :is_valid, :無効 %>
-				<%= f.label :無効 %>
-				<%= f.submit "追加" %>
-			</div>
-		</div>
-		<% end %>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-5">
-
 			<table class="table">
 				<thead>
 					<tr>
@@ -43,7 +26,6 @@
 				<% end %>
 				</tbody>
 			</table>
-
 		</div>
 	</div>
 </div>

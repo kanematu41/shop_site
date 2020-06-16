@@ -13,7 +13,7 @@
 			<%= f.radio_button :is_valid, :無効 %>
 			<%= f.label :無効 %>
 		 <% if request.path_info == admin_genres_path %> <!-- request.path_infoで現在いるURLの参照-->
-			<%= f.submit "追加" %>
+			<%= f.submit "追加" %>													 <!-- submitの分岐-->
 		<% else %>
 			<%= f.submit "変更の保存" %>
 		<% end %>

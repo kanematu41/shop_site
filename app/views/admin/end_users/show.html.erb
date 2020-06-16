@@ -1,2 +1,39 @@
-<h1>Admin::EndUsers#show</h1>
-<p>Find me in app/views/admin/end_users/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>会員詳細</h3>
+			<table class="table devise-table">
+				<tr>
+					<th>顧客ID</th>
+					<th><%= @end_user.id %>(<%= @end_user.is_deleted %>)</th>
+				</tr>
+				<tr>
+					<th>氏名</th>
+					<th><%= @end_user.first_name + @end_user.last_name %></th>
+				</tr>
+				<tr>
+					<th>フリガナ</th>
+					<th><%= @end_user.first_kana_name + @end_user.last_kana_name %></th>
+				</tr>
+				<tr>
+					<th>郵便番号</th>
+					<th><%= @end_user.postcode %></th>
+				</tr>
+				<tr>
+					<th>住所</th>
+					<th><%= @end_user.address %></th>
+				</tr>
+				<tr>
+					<th>電話番号</th>
+					<th><%= @end_user.phone_number %></th>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<th><%= @end_user.email %></th>
+				</tr>
+			</table>
+
+			<%#= link_to "注文履歴", admin_orders_path %>
+		</div>
+	</div>
+</div>

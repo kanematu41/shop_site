@@ -1,2 +1,51 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>注文詳細</h3>
+			<table class="table devise-table">
+				<tr>
+					<th>購入者</th>
+					<th><%= @order.end_user.first_name %></th>
+				</tr>
+				<tr>
+					<th>配送先</th>
+					<th><%= @order.postcode %>
+							<%= @order.address %>
+							<%= @order.direction %>
+					</th>
+				</tr>
+				<tr>
+					<th>支払方法</th>
+					<th><%= @order.pay_type %></th>
+				</tr>
+				<tr>
+					<th>注文状況</th>
+					<th><%= @order.order_status %></th>
+				</tr>
+			</table>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価(税込)</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th>製作状況</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% order_details.each do |order_detail| %>
+					<tr>
+						<td><%= order_detail.item.name %></td>
+						<td><%= order_detail.price %></td>
+						<td><%= order_detail.quantity %></td>
+						<td><%= order_detail.order.total_price %></td>
+						<td><%= order_detail.item_status %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

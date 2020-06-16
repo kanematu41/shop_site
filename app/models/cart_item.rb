@@ -1,4 +1,4 @@
-class CratItem < ApplicationRecord
+class CartItem < ApplicationRecord
 	belongs_to :end_user
 	belongs_to :item
 

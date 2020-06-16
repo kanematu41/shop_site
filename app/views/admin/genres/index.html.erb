@@ -13,15 +13,16 @@
 					<tr>
 						<th>ジャンル名</th>
 						<th>状態</th>
-						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 				<% @genres.each do |genre| %>
 					<tr>
-						<td><%= genre.name %></td>
+						<td><%= link_to edit_admin_genre_path(genre) do %>
+									<%= genre.name %>
+								<% end %>
+						</td>
 						<td><%= genre.is_valid %></td>
-						<td><%= link_to "編集", edit_admin_genre_path(genre) %></td>
 					</tr>
 				<% end %>
 				</tbody>

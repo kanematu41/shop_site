@@ -8,4 +8,8 @@ class Delivery < ApplicationRecord
 			validates :postcode
 		end
 	end
+
+	def full_address
+		self.postcode + self.address + self.direction
+	end
 end

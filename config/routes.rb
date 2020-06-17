@@ -33,7 +33,11 @@ Rails.application.routes.draw do
       end
     end
   	resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-  	resources :orders, only: [:index, :new, :create, :show]
+  	resources :orders, only: [:index, :new, :create, :show] do
+      collection do
+        post :confirm
+      end
+    end
   end
 
 end

@@ -9,4 +9,9 @@ class Order < ApplicationRecord
 			validates :postcode
 		end
 	end
+
+	enum pay_type: {
+		クレジットカード: 0,
+		銀行振込: 1
+	}
 end

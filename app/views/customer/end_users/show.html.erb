@@ -1,2 +1,40 @@
-<h1>Customer::EndUsers#show</h1>
-<p>Find me in app/views/customer/end_users/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>マイページ</h3>
+			<%= link_to "編集する", edit_end_user_path(@end_user), class: "btn btn-primary" %>
+			<br><br>
+			<table class="left-width">
+				<tr>
+					<th>氏名</th>
+					<th><%= @end_user.first_name + @end_user.last_name %></th>
+				</tr>
+				<tr>
+					<th>カナ</th>
+					<th><%= @end_user.first_kana_name + @end_user.last_kana_name %></th>
+				</tr>
+				<tr>
+					<th>郵便番号</th>
+					<th><%= @end_user.postcode %></th>
+				</tr>
+				<tr>
+					<th>住所</th>
+					<th><%= @end_user.address %></th>
+				</tr>
+				<tr>
+					<th>電話番号</th>
+					<th><%= @end_user.phone_number %></th>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<th><%= @end_user.email %></th>
+				</tr>
+			</table>
+
+			<br><br>
+
+			<%= link_to "配送先", deliveries_path, class: "btn btn-primary" %>
+			<%= link_to "履歴一覧", orders_path, class: "btn btn-primary" %>
+		</div>
+	</div>
+</div>

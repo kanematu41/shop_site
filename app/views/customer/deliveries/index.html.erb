@@ -1,2 +1,40 @@
-<h1>Customer::Deliveries#index</h1>
-<p>Find me in app/views/customer/deliveries/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			<h3>登録/一覧</h3>
+
+			<br>
+
+			<%= render "customer/deliveries/delivery_form", delivery: @delivery %>
+		</div>
+	</div>
+
+	<br><br>
+
+	<div class="row">
+		<div class="col-xs-11 col-xs-offset-1">
+			<% if @deliveries.exists? %>
+			<table class="deli-border">
+				<thead>
+					<tr>
+						<th>郵便番号</th>
+						<th>住所</th>
+						<th>宛先</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @deliveries.each do |delivery| %>
+					<tr>
+						<td><%= delivery.postcode %></td>
+						<td><%= delivery.address %></td>
+						<td><%= delivery.direction %></td>
+						<td>
+							<%= link_to "編集", edit_delivery_path(delivery), class: "btn btn-sm btn-primary" %>
+							<%= link_to "削除", delivery_path(delivery), method: :delete, data:{confirm: "削除しますか?"}, class: "btn btn-sm btn-danger" %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<% end %>

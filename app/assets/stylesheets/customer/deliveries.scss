@@ -1,3 +1,30 @@
 // Place all the styles related to the customer/deliveries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.deli-field {
+	padding-top: 10px;
+}
+
+.deli-action {
+	padding-top: 20px;
+	text-align: right;
+}
+
+.deli-button {
+	width: 30%;
+}
+
+.deli-border th {/*table内のthに対して*/
+	border: 1px #000000 solid;
+	border-collapse: collapse;
+  padding: 20px 70px;/*上下左右10pxずつ*/
+  text-align: center;
+}
+
+.deli-border td {/*table内のtdに対して*/
+	border: 1px #000000 solid;
+	border-collapse: collapse;
+  padding: 20px 70px;/*上下3pxで左右10px*/
+  text-align: center;
+}

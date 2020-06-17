@@ -1,0 +1,27 @@
+<%= form_for(@delivery) do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
+
+<div class="deli-field">
+	<%= f.label :郵便番号 %>(ハイフンなし)
+	<%= f.text_field :postcode, class: "form-control" %>
+</div>
+
+<div class="deli-field">
+	<%= f.label :住所 %>
+	<%= f.text_field :address, class: "form-control" %>
+</div>
+
+<div class="deli-field">
+	<%= f.label :宛先 %>
+	<%= f.text_field :direction, class: "form-control" %>
+</div>
+
+<div class="deli-action">
+	<% if request.path_info == deliveries_path %>
+		<%= f.submit "登録する", class: "btn btn-success deli-button" %>
+	<% else %>
+		<%= f.submit "更新する", class: "btn btn-primary deli-button" %>
+	<% end %>
+</div>
+
+<% end %>

@@ -3,6 +3,7 @@ class Customer::CartItemsController < ApplicationController
   def index
   	@cart_items = CartItem.where(end_user: current_end_user)
   	@tax = 1.1
+  	@total_price = 0
   end
 
   def create
@@ -23,6 +24,11 @@ class Customer::CartItemsController < ApplicationController
 
   def destroy
   	@cart_item.destroy
+  	redirect_back(fallback_location: root_path)
+  end
+
+  def empty
+  	current_end_user.cart_items.destroy_all
   	redirect_back(fallback_location: root_path)
   end
 

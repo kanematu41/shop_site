@@ -1,3 +1,17 @@
 // Place all the styles related to the customer/cart_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.border th {/*table内のthに対して*/
+	border: 1px #000000 solid;
+	border-collapse: collapse;
+  padding: 20px 65px;/*上下左右10pxずつ*/
+  text-align: center;
+}
+
+.border td {/*table内のtdに対して*/
+	border: 1px #000000 solid;
+	border-collapse: collapse;
+  padding: 20px 65px;/*上下3pxで左右10px*/
+  text-align: center;
+}

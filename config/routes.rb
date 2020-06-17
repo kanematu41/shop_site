@@ -20,9 +20,18 @@ Rails.application.routes.draw do
   		sessions: 'customer/end_users/sessions',
   		passwords: 'customer/end_users/passwords'
   	}
-  	resources :end_users, only: [:show, :edit, :update]
+  	resources :end_users, only: [:show, :edit, :update] do
+      member do
+        get :confirm
+      end
+    end
   	resources :items, only: [:index, :show]
-  	resources :cart_items, only: [:index, :create, :destroy, :update]
+    # delete 'cart_items/empty' => 'cart_items#empty', as: :empty
+  	resources :cart_items, only: [:index, :create, :destroy, :update] do
+      collection do
+        delete :empty
+      end
+    end
   	resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   	resources :orders, only: [:index, :new, :create, :show]
   end

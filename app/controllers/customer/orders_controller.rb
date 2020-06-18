@@ -12,6 +12,7 @@ class Customer::OrdersController < ApplicationController
     @postage = 800
     @total_price = 0
 
+    @order = Order.new
     @cart_items = CartItem.where(end_user: current_end_user)
     @pay_type = order_params[:pay_type]
     if order_params[:address_type] == "1"
@@ -31,6 +32,24 @@ class Customer::OrdersController < ApplicationController
     end
   end
 
+  def create
+    order = Order.new(order_params)
+    order.end_user = current_end_user
+    if order.save
+      current_end_user.cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.order_id = order.id
+        order_detail.item_id = cart_item.item_id
+        order_detail.quantity = cart_item.quantity
+        order_detail.price = cart_item.item.non_tax_price
+      end
+      current_end_user.cart_items.destroy_all
+      redirect_to thanks_orders_path
+    else
+      render :new
+    end
+  end
+
   def thanks
   end
 
@@ -44,7 +63,11 @@ class Customer::OrdersController < ApplicationController
                                   :delivery_id,
                                   :postcode,
                                   :address,
-                                  :direction
+                                  :direction,
+                                  :tax,
+                                  :postage,
+                                  :total_price,
+                                  :order_status
                                   )
   end
   # end_user_id

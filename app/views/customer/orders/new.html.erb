@@ -8,8 +8,9 @@
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-2">
 
+			<!-- コメントアウト(form_for) -->
 			<%#= form_for(@order, url: confirm_orders_path) do |f| %>
-			<!-- テーブルにカラムがなくても使える -->
+			<!-- テーブルにカラムがなくても使える(form_with) -->
 			<%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
 			<%= render 'layouts/error_messages', model: f.object %>
 				<h4><label>支払方法</label></h4>

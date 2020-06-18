@@ -1,2 +1,82 @@
-<h1>Customer::Orders#confirm</h1>
-<p>Find me in app/views/customer/orders/confirm.html.erb</p>
+<div class="container">
+	<h3>注文確認</h3>
+	<div class="row">
+		<div class="col-xs-7 col-xs-offset-1">
+			<table class="confirm">
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価(税込)</th>
+						<th>数量</th>
+						<th>小計</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @cart_items.each do |cart_item| %>
+					<tr>
+						<td><%= cart_item.item.name %></td>
+						<td><%= (cart_item.item.non_tax_price * @tax).floor.to_s(:delimited) %></td>
+						<td><%= cart_item.quantity %></td>
+						<td><%= (cart_item.item.non_tax_price * cart_item.quantity * @tax).floor.to_s(:delimited) %></td>
+					</tr>
+					<% @total_price += cart_item.item.non_tax_price * cart_item.quantity * @tax %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-xs-4">
+			<table class="confirm">
+				<tr>
+					<th>送料</th>
+					<th><%= @postage %></th>
+				</tr>
+				<tr>
+					<th>商品合計</th>
+					<th><%= @total_price.floor.to_s(:delimited) %></th>
+				</tr>
+				<tr>
+					<th>請求金額</th>
+					<th><%= (@total_price + @postage).floor.to_s(:delimited) %></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+<br><br>
+
+	<div class="row">
+		<div class="col col-xs-offset-1">
+			<%= form_with model: @order, local: true do |f| %>
+				<%= f.label :支払方法 %> :
+				<%= @pay_type %>
+
+				<br><br>
+
+				<%= f.label :お届け先 %> : 〒
+				<%# binding.pry %>
+				<%= @postcode %> | <%= @address %>
+
+				<br><br>
+
+				<%= f.label :宛先 %> :
+				<%= @direction %>
+
+				<!-- パラメーター値 -->
+				<%= f.hidden_field :pay_type, value: @pay_type %>
+				<%= f.hidden_field :postcode, value: @postcode %>
+				<%= f.hidden_field :address, value: @address %>
+				<%= f.hidden_field :direction, value: @direction %>
+				<%= f.hidden_field :tax, value: @tax %>
+				<%= f.hidden_field :postage, value: @postage %>
+				<%= f.hidden_field :total_price, value: @total_price %>
+
+				<div class="order-submit">
+					<%= f.submit "購入確定", class: "btn btn-success order-button" %>
+				</div>
+
+			<% end %>
+		</div>
+	</div>
+</div>
+

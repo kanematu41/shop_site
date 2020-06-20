@@ -10,10 +10,10 @@ class Customer::CartItemsController < ApplicationController
   	cart_item = CartItem.new(cart_item_params)
   	cart_item.end_user_id = current_end_user.id
   	if current_end_user.cart_items.where(item_id: cart_item.item_id).exists?
-  		redirect_to cart_items_path
+  		redirect_to cart_items_path, notice: "カート内から商品を追加してください。"
   	else
   		cart_item.save
-  		redirect_to cart_items_path
+  		redirect_to cart_items_path, notice: "商品を追加しました。"
   	end
   end
 

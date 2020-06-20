@@ -36,3 +36,22 @@
 .order-submit {
 	text-align: center;
 }
+
+.thanks {
+	text-align: center;
+	margin-top: 100px;
+}
+
+.order-border th {/*table内のthに対して*/
+	border: 1px #000000 solid;
+	border-collapse: collapse;
+  padding: 20px 30px;/*上下左右10pxずつ*/
+  text-align: center;
+}
+
+.order-border td {/*table内のtdに対して*/
+	border: 1px #000000 solid;
+	border-collapse: collapse;
+  padding: 20px 30px;/*上下3pxで左右10px*/
+  text-align: center;
+}

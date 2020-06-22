@@ -5,12 +5,12 @@
 			<table class="table devise-table">
 				<tr>
 					<th>購入者</th>
-					<th><%= @order.end_user.first_name %></th>
+					<th><%= @order.end_user.first_name + @order.end_user.last_name %></th>
 				</tr>
 				<tr>
 					<th>配送先</th>
-					<th><%= @order.postcode %>
-							<%= @order.address %>
+					<th>〒 <%= @order.postcode %>
+							<%= @order.address %><br>
 							<%= @order.direction %>
 					</th>
 				</tr>
@@ -20,7 +20,12 @@
 				</tr>
 				<tr>
 					<th>注文状況</th>
-					<th><%= @order.order_status %></th>
+					<th>
+						<%= form_for [:admin, @order] do |f| %>
+						<%= f.select :order_status, Order.order_statuses.keys %>
+						<%= f.submit "更新" %>
+						<% end %>
+					</th>
 				</tr>
 			</table>
 
@@ -35,17 +40,38 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% order_details.each do |order_detail| %>
+					<% @order.order_details.each do |order_detail| %>
 					<tr>
 						<td><%= order_detail.item.name %></td>
-						<td><%= order_detail.price %></td>
+						<td><%= (order_detail.price * @order.tax).floor.to_s(:delimited) %></td>
 						<td><%= order_detail.quantity %></td>
-						<td><%= order_detail.order.total_price %></td>
-						<td><%= order_detail.item_status %></td>
+						<td><%= (order_detail.price * order_detail.quantity * @order.tax).floor.to_s(:delimited) %></td>
+						<td>
+							<%= form_for [:admin, order_detail] do |f| %>
+							<%= f.select :item_status, OrderDetail.item_statuses.keys %>
+							<%= f.submit "更新" %>
+							<% end %>
+						</td>
 					</tr>
 					<% end %>
 				</tbody>
 			</table>
+
+			<table class="border">
+				<tr>
+					<th>商品合計</th>
+					<th><%= @order.total_price.floor.to_s(:delimited) %></th>
+				</tr>
+				<tr>
+					<th>送料</th>
+					<th><%= @order.postage.floor.to_s(:delimited) %></th>
+				</tr>
+				<tr>
+					<th>請求金額</th>
+					<th><%= (@order.total_price + @order.postage).floor.to_s(:delimited) %></th>
+				</tr>
+			</table>
+
 		</div>
 	</div>
 </div>

@@ -26,7 +26,6 @@ Rails.application.routes.draw do
       end
     end
   	resources :items, only: [:index, :show]
-    # delete 'cart_items/empty' => 'cart_items#empty', as: :empty
   	resources :cart_items, only: [:index, :create, :destroy, :update] do
       collection do
         delete :empty

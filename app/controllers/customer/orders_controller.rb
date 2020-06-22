@@ -60,7 +60,7 @@ class Customer::OrdersController < ApplicationController
     else
       @order = Order.new
       @deliveries = Delivery.where(end_user: current_end_user)
-      render :new
+      redirect_to items_path, notice: "宛先が無効です。"
     end
   end
 
@@ -82,7 +82,6 @@ class Customer::OrdersController < ApplicationController
                                   :tax,
                                   :postage,
                                   :total_price,
-                                  :order_status
                                   )
   end
 

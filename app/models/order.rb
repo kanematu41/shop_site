@@ -10,6 +10,14 @@ class Order < ApplicationRecord
 		end
 	end
 
+	def total_quantity
+		quantity = 0
+		self.order_details.each do |order_detail|
+			quantity += order_detail.quantity
+		end
+		return quantity
+	end
+
 	enum pay_type: {
 		クレジットカード: 0,
 		銀行振込: 1

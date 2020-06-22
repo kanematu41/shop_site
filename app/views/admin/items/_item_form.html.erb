@@ -33,7 +33,7 @@
 		<%= f.label :販売ステータス %>
 		<%#= f.select :is_valid, ["販売中", "販売停止中"], {include_blank: "選択"} %>
 		<%#= f.select :is_valid, options_for_select(Item.is_valids), {}, class: "form-control" %>
-		<%= f.select :is_valid, Item.is_valids.keys.to_a, {}, class: "form-control" %>
+		<%= f.select :is_valid, Item.is_valids.keys, {}, class: "form-control" %>
 	</div>
 
 	<div class="item-action">

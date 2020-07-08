@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    models:
+      end_user: "ユーザー"
+      admin: "管理者"
+      cart_item: "カート内"
+      delivery: "配達先"
+      genre: "ジャンル"
+      item: "商品"
+      order_detail: "注文詳細"
+      order: "注文"
+    attributes:
+      end_user:
+        first_name: "性"
+        last_name: "名"
+        first_kana_name: "カナ性"
+        last_kana_name: "カナ名"
+        email: "メールアドレス"
+        postcode: "郵便番号"
+        address: "住所"
+        phone_number: "電話番号"
+        password: "パスワード"
+      delivery:
+        postcode: "郵便番号"
+        address: "住所"
+        direction: "宛名"
+      admin:
+        email: "メールアドレス"
+        password: "パスワード"
+      item:
+        name: "名前"
+        detail: "商品説明"
+        non_tax_price: "料金"
+        image: "画像"
+      genre:
+        name: "名前"

@@ -7,7 +7,7 @@ class Item < ApplicationRecord
 	with_options presence: true do
 		validates :name
 		validates :detail
-		validates :image
+		validates :image, presence: { message: 'を選択してください' }
 		with_options format: { with: /\A[0-9]+\z/ } do
 			validates :non_tax_price
 		end

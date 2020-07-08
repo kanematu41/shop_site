@@ -10,6 +10,13 @@ class Customer::CartItemsController < ApplicationController
   def create
   	cart_item = CartItem.new(cart_item_params)
   	cart_item.end_user_id = current_end_user.id
+    # include_brank == 個数選択ならば
+    if cart_item.quantity == nil
+      redirect_back(fallback_location: root_path, notice: "個数を選択してください。")
+      return
+    end
+
+    # カート内に同商品があれば
   	if current_end_user.cart_items.where(item_id: cart_item.item_id).exists?
   		redirect_to cart_items_path, notice: "カート内から商品を追加してください。"
   	else

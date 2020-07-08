@@ -1,4 +1,5 @@
 class Customer::CartItemsController < ApplicationController
+  before_action :authenticate_end_user!
 	before_action :set_cart_item, only: [:update, :destroy]
   def index
   	@cart_items = CartItem.where(end_user: current_end_user)

@@ -1,7 +1,7 @@
 class Customer::EndUsersController < ApplicationController
-	before_action :set_end_user, only: [:edit, :update]
+  before_action :authenticate_end_user!
+	before_action :set_end_user, only: [:show, :edit, :update]
   def show
-  	@end_user = current_end_user
   end
 
   def edit
@@ -33,7 +33,7 @@ class Customer::EndUsersController < ApplicationController
   end
 
   def set_end_user
-  	@end_user = EndUser.find(params[:id])
+  	@end_user = current_end_user
   end
 
 end

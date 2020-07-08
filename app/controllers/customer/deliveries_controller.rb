@@ -1,4 +1,5 @@
 class Customer::DeliveriesController < ApplicationController
+  before_action :authenticate_end_user!
 	before_action :set_delivery, only: [:edit, :update, :destroy]
   def index
   	@delivery = Delivery.new
@@ -40,5 +41,8 @@ class Customer::DeliveriesController < ApplicationController
 
   def set_delivery
   	@delivery = Delivery.find(params[:id])
+    if @delivery.end_user != current_end_user
+      redirect_to end_user_path(current_end_user)
+    end
   end
 end
